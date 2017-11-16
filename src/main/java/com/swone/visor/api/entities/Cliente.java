@@ -1,7 +1,7 @@
 package com.swone.visor.api.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +20,7 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String apelido;
 	private Boolean ativo;
-	private LocalDateTime dataCriacao;
+	private Timestamp dataCriacao;
 	
 	public Cliente() {
 		
@@ -64,17 +64,17 @@ public class Cliente implements Serializable{
 	}
 
 	@Column(name= "dtCriacao", nullable=false)
-	public LocalDateTime getdataCriacao() {
+	public Timestamp getdataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setdataCriacao(LocalDateTime dataCriacao) {
+	public void setdataCriacao(Timestamp dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	
 	@PrePersist
 	public void prePersist() {
-		final LocalDateTime atual = LocalDateTime.now();
+		final Timestamp atual = new Timestamp(System.currentTimeMillis());
 		dataCriacao = atual;
 	}
 	
